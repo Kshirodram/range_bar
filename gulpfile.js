@@ -20,4 +20,11 @@ gulp.task('compile-less', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('default', ['compile-es6', 'compile-less']);
+// Rerun the task when a file changes
+gulp.task('watch', function() {
+  gulp.watch('scripts/*.js', ['compile-es6']);
+  gulp.watch('./styles/*.less', ['compile-less']);
+});
+
+
+gulp.task('default', ['compile-es6', 'compile-less', 'watch']);
